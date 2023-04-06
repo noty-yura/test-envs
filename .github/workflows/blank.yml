@@ -74,6 +74,23 @@ jobs:
 
       - uses: langroodi/tagize@v1
 
+      - name: Set version
+        id: set_version
+        run: echo "::set-output name=version::$(npm version patch)"
+
       - name: deploy
         run: echo Hello, world!
 
+      - name: Create release and tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this release:
+            - Updated to version ${{ steps.set_version.outputs.version }}.
+          draft: false
+          prerelease: false
