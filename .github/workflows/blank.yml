@@ -72,6 +72,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Tagger - Move semantic tags!
+        # You may pin to the exact commit or the version.
+        # uses: fischerscode/tagger@27ea3546653430ea3356ff2ddcc84196875e33e5
+        uses: fischerscode/tagger@v0.1.0
+#         with:
+          # The new tag. Other tags will be moved to this position.
+#           tag: # default is ${{ github.ref }}
+          # The prefix of the semantic tags.
+#           prefix: # default is 
+          # The github token.
+#           token: # default is ${{ github.token }}
+
       - name: Set version
         id: set_version
         run: echo "::set-output name=version::$(npm version patch)"
