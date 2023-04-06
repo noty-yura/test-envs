@@ -97,4 +97,3 @@ jobs:
             - Updated to version ${{ steps.set_version.outputs.version }}.
           draft: false
           prerelease: false
-
