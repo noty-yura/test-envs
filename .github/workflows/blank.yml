@@ -72,12 +72,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Increment version and create tag
-        run: |
-          VERSION=$(npm version patch)
-          git tag "$VERSION"
-          git push --tags
-
+      - uses: langroodi/tagize@v1
+      
       - name: deploy
         run: echo Hello, world!
 
