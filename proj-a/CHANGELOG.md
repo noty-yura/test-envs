@@ -1,5 +1,11 @@
 # proj-a
 
+## 1.1.1
+
+### Patch Changes
+
+- c9de8e6: summary
+
 ## 1.1.0
 
 ### Minor Changes

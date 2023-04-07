@@ -1,5 +1,11 @@
 # webapp
 
+## 1.9.1
+
+### Patch Changes
+
+- c9de8e6: summary
+
 ## 1.9.0
 
 ### Minor Changes
