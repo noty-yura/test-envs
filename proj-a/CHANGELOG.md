@@ -1,5 +1,12 @@
 # proj-a
 
+## 1.0.1
+
+### Patch Changes
+
+- 24a9d76: its bump
+- 657f20d: another bump
+
 ## 1.0.0
 
 ### Major Changes
