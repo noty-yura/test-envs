@@ -30,6 +30,6 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           release_name: ${{ env.RELEASE_NAME }}
           body: |
-            This is the release for version ${{ env.TAG_NAME }}.
+            This is the release for version ${{ env.TAG_NAME }}. Cnanges
           draft: false
           prerelease: true
