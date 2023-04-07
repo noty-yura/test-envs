@@ -25,7 +25,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: npm run packages-version
-          commit-message: "release: bump release versions 🚀"
+          commit: "release: bump release versions 🚀"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
