@@ -16,11 +16,9 @@ jobs:
       - name: Set env variables
         run: |
           VERSION=$(echo ${{ github.ref }} | sed 's/refs\/heads\/release\///' | sed 's/R//')
-          TAG_NAME=v$VERSION
-          RELEASE_NAME="Release $VERSION"
-          echo "::set-env name=TAG_NAME::$TAG_NAME"
-          echo "::set-env name=RELEASE_NAME::$RELEASE_NAME"
-          echo "::set-output name=VERSION::$VERSION"
+          echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
+          echo "RELEASE_NAME=Release $VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
         shell: bash
 
       - name: Create release
