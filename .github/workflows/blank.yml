@@ -98,5 +98,3 @@ jobs:
           automatic_release_tag: ${{ steps.tag_version.outputs.new_tag }}
           prerelease: false
           title: "Proja Build"
-          files: |
-            proj-a/**
