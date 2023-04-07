@@ -24,9 +24,9 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          version: npm run packages-version
+#          version: npm run packages-version
           commit: "release: bump release versions 🚀"
-          publish: echo "ok"
+#          publish: echo "ok"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
