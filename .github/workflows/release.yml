@@ -8,6 +8,8 @@ on:
 jobs:
   create_release:
     name: Create Release
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,8 +25,6 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        permissions:
-          contents: write
         with:
           tag_name: ${{ env.TAG_NAME }}
           draft: false
