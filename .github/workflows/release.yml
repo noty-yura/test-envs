@@ -1,4 +1,4 @@
-name: Create Github Release from branch
+name: Create Github Release
 
 on:
   push:
@@ -11,21 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Set env variables
+        run: |
+          VERSION=${{ env.BRANCH_NAME/refs\/heads\/release\// }}
+          TAG_NAME=v$VERSION
+          RELEASE_NAME="Release $VERSION"
+          echo "::set-env name=TAG_NAME::$TAG_NAME"
+          echo "::set-env name=RELEASE_NAME::$RELEASE_NAME"
+        shell: bash
+        env:
+          BRANCH_NAME: ${{ github.ref }}
 
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: ${{ github.ref }}
-          with:
-            tag_name: ${{ 'v' + env.BRANCH_NAME.replace('refs/heads/release/R', '') }}
-            release_name: Release ${{ env.BRANCH_NAME.replace('refs/heads/release/R', '') }}
-            body: |
-              This is the release for version ${{ env.BRANCH_NAME.replace('refs/heads/release/', '') }}.
-            draft: false
-            prerelease: false
-
-      - name: Set output
-        run: echo "release_id=${{ steps.create_release.outputs.id }}"  >> $GITHUB_OUTPUT
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          release_name: ${{ env.RELEASE_NAME }}
+          body: |
+            This is the release for version ${{ env.TAG_NAME }}.
+          draft: false
+          prerelease: false
