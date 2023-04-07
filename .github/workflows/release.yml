@@ -1,33 +1,30 @@
-name: Bump
+name: Create Github Release fr
 
 on:
-  workflow_dispatch:
-
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+  push:
+    branches:
+      - 'release/*'
 
 jobs:
-  bump:
-    name: Bump
+  create_release:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install Dependencies
-        run: npm i
-
-      - name: Create Release Pull Request
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          commit: "release: bump release versions 🚀"
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ 'v' + env.BRANCH_NAME.substring(8) }}
+          release_name: Release ${{ env.BRANCH_NAME.substring(8) }}
+          body: |
+            This is the release for version ${{ env.BRANCH_NAME.substring(8) }}.
+          draft: false
+          prerelease: false
 
-      - name: Debug Release
-        run: echo ${{ toJson(steps.changesets.outputs) }}
+      - name: Set output
+        run: echo "release_id=${{ steps.create_release.outputs.id }}"  >> $GITHUB_OUTPUT
