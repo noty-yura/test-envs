@@ -1,5 +1,11 @@
 # webapp
 
+## 1.9.3
+
+### Patch Changes
+
+- 678e943: bubka
+
 ## 1.9.2
 
 ### Patch Changes

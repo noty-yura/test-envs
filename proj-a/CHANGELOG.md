@@ -1,5 +1,11 @@
 # proj-a
 
+## 1.1.3
+
+### Patch Changes
+
+- 678e943: bubka
+
 ## 1.1.2
 
 ### Patch Changes
