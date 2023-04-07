@@ -15,7 +15,7 @@ jobs:
 
       - name: Set env variables
         run: |
-          VERSION=${{ env.BRANCH_NAME/refs\/heads\/release\// }}
+          VERSION=${{ env.BRANCH_NAME.substring(9) }}
           TAG_NAME=v$VERSION
           RELEASE_NAME="Release $VERSION"
           echo "::set-env name=TAG_NAME::$TAG_NAME"
