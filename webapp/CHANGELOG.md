@@ -1,5 +1,15 @@
 # webapp
 
+## 1.10.0
+
+### Minor Changes
+
+- 8d21abd: linky
+
+### Patch Changes
+
+- 678e943: bubka
+
 ## 1.9.2
 
 ### Patch Changes

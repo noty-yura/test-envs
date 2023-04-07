@@ -1,5 +1,15 @@
 # proj-a
 
+## 1.2.0
+
+### Minor Changes
+
+- 8d21abd: linky
+
+### Patch Changes
+
+- 678e943: bubka
+
 ## 1.1.2
 
 ### Patch Changes
