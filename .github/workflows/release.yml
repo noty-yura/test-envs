@@ -1,9 +1,9 @@
-name: Create Github Release fr
+name: Create Github Release from branch
 
 on:
   push:
     branches:
-      - 'release/*'
+      - 'release/R*'
 
 jobs:
   create_release:
