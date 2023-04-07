@@ -1,5 +1,12 @@
 # proj-a
 
+## 1.1.2
+
+### Patch Changes
+
+- 22ed755: hello
+- 8ca0bc8: allo
+
 ## 1.1.1
 
 ### Patch Changes
