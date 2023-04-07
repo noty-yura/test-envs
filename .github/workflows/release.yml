@@ -26,6 +26,7 @@ jobs:
         with:
           version: npm run packages-version
           commit: "release: bump release versions 🚀"
+          publish: echo "ok"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
