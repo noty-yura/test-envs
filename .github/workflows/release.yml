@@ -15,14 +15,13 @@ jobs:
 
       - name: Set env variables
         run: |
-          VERSION=${{ env.BRANCH_NAME.substring:9 }}
+          VERSION=$(echo ${{ github.ref }} | sed 's/refs\/heads\/release\///' | sed 's/R//')
           TAG_NAME=v$VERSION
           RELEASE_NAME="Release $VERSION"
           echo "::set-env name=TAG_NAME::$TAG_NAME"
           echo "::set-env name=RELEASE_NAME::$RELEASE_NAME"
+          echo "::set-output name=VERSION::$VERSION"
         shell: bash
-        env:
-          BRANCH_NAME: ${{ github.ref }}
 
       - name: Create release
         id: create_release
