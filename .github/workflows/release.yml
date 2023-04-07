@@ -18,13 +18,14 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ 'v' + env.BRANCH_NAME.substring(8) }}
-          release_name: Release ${{ env.BRANCH_NAME.substring(8) }}
-          body: |
-            This is the release for version ${{ env.BRANCH_NAME.substring(8) }}.
-          draft: false
-          prerelease: false
+          BRANCH_NAME: ${{ github.ref }}
+          with:
+            tag_name: ${{ 'v' + env.BRANCH_NAME.replace('refs/heads/release/R', '') }}
+            release_name: Release ${{ env.BRANCH_NAME.replace('refs/heads/release/R', '') }}
+            body: |
+              This is the release for version ${{ env.BRANCH_NAME.replace('refs/heads/release/', '') }}.
+            draft: false
+            prerelease: false
 
       - name: Set output
         run: echo "release_id=${{ steps.create_release.outputs.id }}"  >> $GITHUB_OUTPUT
