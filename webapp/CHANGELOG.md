@@ -1,5 +1,12 @@
 # webapp
 
+## 1.9.2
+
+### Patch Changes
+
+- 22ed755: hello
+- 8ca0bc8: allo
+
 ## 1.9.1
 
 ### Patch Changes
