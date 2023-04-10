@@ -21,6 +21,7 @@ jobs:
           echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
           echo "RELEASE_NAME=Cool release $VERSION" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "BRANCH=release/R$VERSION" >> $GITHUB_ENV
         shell: bash
 
       - name: Test
@@ -31,7 +32,7 @@ jobs:
         with:
           name: ${{ env.RELEASE_NAME }}
           tag_name: ${{ env.TAG_NAME }}
-          target_commitish: ${{ github.ref }}
+          target_commitish: ${{ basename(github.ref) }}
           draft: false
           prerelease: true
           generate_release_notes: true
