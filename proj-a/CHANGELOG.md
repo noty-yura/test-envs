@@ -1,5 +1,16 @@
 # proj-a
 
+## 1.2.0
+
+### Minor Changes
+
+- Zadeployiv i lig spati
+- 8d21abd: linky
+
+### Patch Changes
+
+- 678e943: bubka
+
 ## 1.1.2
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # webapp
 
+## 1.10.0
+
+### Minor Changes
+
+- Minor
+- 8d21abd: linky
+
+### Patch Changes
+
+- Zadeployiv i lig spati
+- 678e943: bubka
+
 ## 1.9.2
 
 ### Patch Changes
