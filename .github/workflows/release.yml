@@ -27,12 +27,17 @@ jobs:
       - name: Test
         run: echo ${{ github.ref }}
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: release-please-action
+        uses: google-github-actions/release-please-action@v3.1.2
         with:
-          name: ${{ env.RELEASE_NAME }}
-          tag_name: ${{ env.TAG_NAME }}
-          target_commitish: ${{ github.sha }}
-          draft: false
-          prerelease: true
-          generate_release_notes: true
+          release-type: node
+
+#      - name: Release
+#        uses: softprops/action-gh-release@v1
+#        with:
+#          name: ${{ env.RELEASE_NAME }}
+#          tag_name: ${{ env.TAG_NAME }}
+#          target_commitish: ${{ github.sha }}
+#          draft: false
+#          prerelease: true
+#          generate_release_notes: true
