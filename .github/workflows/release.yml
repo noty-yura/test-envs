@@ -23,6 +23,9 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
         shell: bash
 
+      - name: Test
+        run: echo ${{ github.ref }}
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
