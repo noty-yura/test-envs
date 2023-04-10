@@ -32,7 +32,7 @@ jobs:
         with:
           name: ${{ env.RELEASE_NAME }}
           tag_name: ${{ env.TAG_NAME }}
-          target_commitish: ${{ github.ref }}
+          target_commitish: ${{ github.sha }}
           draft: false
           prerelease: true
           generate_release_notes: true
