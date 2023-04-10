@@ -28,6 +28,3 @@ jobs:
           commit: "release: bump release versions 🚀"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Debug Release
-        run: echo ${{ toJson(steps.changesets.outputs) }}
