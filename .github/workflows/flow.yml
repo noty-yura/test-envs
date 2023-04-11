@@ -87,16 +87,13 @@ jobs:
       - name: Create output variable
         id: get_true_vars
         run: |
+          MAP=( ["migrate"]="migration" ["webapp_deploy"]="webapp" ["trpc_deploy"]="TRPC" )
           LIST=""
-          if [ "${{ inputs.migrate }}" = true ]; then
-            LIST="$LIST v migration\n"
-          fi
-          if [ "${{ inputs.webapp_deploy }}" = true ]; then
-            LIST="$LIST v webapp\n"
-          fi
-          if [ "${{ inputs.trpc_deploy }}" = true ]; then
-            LIST="$LIST v TRPC\n"
-          fi
+          for VAR in "${!MAP[@]}"; do
+           if [ "${{ inputs[$VAR] }}" = true ]; then
+             LIST="$LIST v ${MAP[$VAR]}\n"
+           fi
+          done
           echo "LIST=$LIST" >> $GITHUB_OUTPUT
 
       - name: Echo output variable
