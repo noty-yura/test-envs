@@ -36,18 +36,24 @@ jobs:
     if: ${{ inputs.migrate == true }}
     name: Migrate database
     runs-on: ubuntu-latest
-    run: echo "migrate"
+    steps:
+      - name: echo
+        run: echo "migrate"
 
   trpc_deploy:
     if: ${{ inputs.trpc_deploy == true }}
     name: Deploy TRPC
     needs: migrate
     runs-on: ubuntu-latest
-    run: echo "deploy trpc"
+    steps:
+      - name: echo
+        run: echo "deploy trpc"
 
   webapp_deploy:
     if: ${{ inputs.webapp_deploy == true }}
     name: Deploy webapp
     runs-on: ubuntu-latest
-    run: echo "deploy webapp"
+    steps:
+      - name: echo
+        run: echo "deploy webapp"
 
