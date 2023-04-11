@@ -87,13 +87,18 @@ jobs:
       - name: Create output variable
         id: get_true_vars
         run: |
-          INPUTS=$(echo "${{ toJson(inputs) }}" | jq -r '. | keys[]')
-          VARIABLE_LIST=()
-          for VARIABLE in $INPUTS; do
-            VARIABLE_LIST += ("$VARIABLE")
-          done
-          echo "LIST=VARIABLE_LIST" >> $GITHUB_OUTPUT
+          LIST = ""
+          if (inputs.migrate) {
+            LIST = "$LIST v migration\n"
+          }
+          if (inputs.webapp) {
+            LIST = "$LIST v webapp\n"
+          }
+          if (inputs.trpc_deploy) {
+            LIST = "$LIST v TRPC\n"
+          }
+          echo "LIST=LIST" >> $GITHUB_OUTPUT
 
       - name: Echo output variable
         run: |
-          echo "True variables: ${{ steps.get_true_vars.outputs.true_vars }}"
+          echo "True variables: ${{ steps.get_true_vars.outputs.LIST }}"
