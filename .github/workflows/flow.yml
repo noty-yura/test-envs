@@ -97,6 +97,7 @@ jobs:
           if [ "${{ inputs.trpc_deploy }}" = true ]; then
             LIST="$LIST v TRPC\n"
           fi
+          echo "LIST=$LIST" >> $GITHUB_OUTPUT
 
       - name: Echo output variable
         run: |
