@@ -52,9 +52,9 @@ jobs:
         run: echo "migrate ${{ github.event.inputs.environment }} ${{ github.event.inputs.migrate }}"
 
   trpc_deploy:
-    if: ${{ inputs.trpc_deploy == true }}
-    name: Deploy TRPC
     needs: migrate
+    if: ${{ always() && inputs.trpc_deploy == true && (needs.migrate.result == 'success' || needs.migrate.result == 'skipped') }}
+    name: Deploy TRPC
     runs-on: ubuntu-latest
     steps:
       - name: echo
