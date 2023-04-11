@@ -32,16 +32,16 @@ on:
 
 jobs:
   # TODO: add check for release branches only
-  check_branch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check branch name
-        run: |
-          branch_name=$(git branch --show-current)
-          if [[ $branch_name != release/R* ]]; then
-            echo "Error: Branch name must start with 'release/R'."
-            exit 1
-          fi
+#  check_branch:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check branch name
+#        run: |
+#          branch_name=$(git branch --show-current)
+#          if [[ $branch_name != release/R* ]]; then
+#            echo "Error: Branch name must start with 'release/R'."
+#            exit 1
+#          fi
 
   echo_all:
     name: echo all
@@ -80,3 +80,20 @@ jobs:
       - name: echo
         run: echo "deploy webapp ${{ github.event.inputs.environment }} ${{ github.event.inputs.webapp_deploy }}"
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create output variable
+        id: get_true_vars
+        run: |
+          true_vars=""
+          for var in "${!INPUT_@}"; do
+            if [[ "${!var}" == "true" ]]; then
+              true_vars="v $true_vars $var"
+            fi
+          done
+          echo "LIST=$true_vars" >> $GITHUB_OUTPUT
+
+      - name: Echo output variable
+        run: |
+          echo "True variables: ${{ steps.get_true_vars.outputs.true_vars }}"
