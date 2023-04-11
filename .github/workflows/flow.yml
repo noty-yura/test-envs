@@ -62,7 +62,7 @@ jobs:
 
   webapp_deploy:
     needs: trpc_deploy
-    if: ${{ inputs.webapp_deploy == true }}
+    if: ${{ always() && inputs.trpc_deploy == true && (needs.trpc_deploy.result == 'success' || needs.trpc_deploy.result == 'skipped') }}
     name: Deploy webapp
     runs-on: ubuntu-latest
     steps:
