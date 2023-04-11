@@ -87,17 +87,16 @@ jobs:
       - name: Create output variable
         id: get_true_vars
         run: |
-          LIST = ""
-          if (inputs.migrate) {
-            LIST = "$LIST v migration\n"
-          }
-          if (inputs.webapp) {
-            LIST = "$LIST v webapp\n"
-          }
-          if (inputs.trpc_deploy) {
-            LIST = "$LIST v TRPC\n"
-          }
-          echo "LIST=LIST" >> $GITHUB_OUTPUT
+          LIST=""
+          if [ "${{ inputs.migrate }}" = true ]; then
+            LIST="$LIST v migration\n"
+          fi
+          if [ "${{ inputs.webapp_deploy }}" = true ]; then
+            LIST="$LIST v webapp\n"
+          fi
+          if [ "${{ inputs.trpc_deploy }}" = true ]; then
+            LIST="$LIST v TRPC\n"
+          fi
 
       - name: Echo output variable
         run: |
