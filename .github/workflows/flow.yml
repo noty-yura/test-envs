@@ -80,7 +80,7 @@ jobs:
       - name: echo
         run: echo "deploy webapp ${{ github.event.inputs.environment }} ${{ github.event.inputs.webapp_deploy }}"
 
-  build:
+  echoinglist:
     runs-on: ubuntu-latest
     steps:
       - name: Create output variable
