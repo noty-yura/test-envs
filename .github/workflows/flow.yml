@@ -61,6 +61,7 @@ jobs:
         run: echo "deploy trpc ${{ github.event.inputs.environment }} ${{ github.event.inputs.trpc_deploy }}"
 
   webapp_deploy:
+    needs: trpc_deploy
     if: ${{ inputs.webapp_deploy == true }}
     name: Deploy webapp
     runs-on: ubuntu-latest
