@@ -32,13 +32,24 @@ on:
 
 jobs:
   # TODO: add check for release branches only
+  echo_all:
+    name: echo all
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: |
+          echo "env ${{ github.event.inputs.environment }}"
+          echo "migrate ${{ github.event.inputs.migrate }}"
+          echo "trpc_deploy ${{ github.event.inputs.trpc_deploy }}"
+          echo "webapp_deploy ${{ github.event.inputs.webapp_deploy }}"
+
   migrate:
     if: ${{ inputs.migrate == true }}
     name: Migrate database
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo "migrate"
+        run: echo "migrate ${{ github.event.inputs.environment }} ${{ github.event.inputs.migrate }}"
 
   trpc_deploy:
     if: ${{ inputs.trpc_deploy == true }}
@@ -47,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo "deploy trpc"
+        run: echo "deploy trpc ${{ github.event.inputs.environment }} ${{ github.event.inputs.trpc_deploy }}"
 
   webapp_deploy:
     if: ${{ inputs.webapp_deploy == true }}
@@ -55,5 +66,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo "deploy webapp"
+        run: echo "deploy webapp ${{ github.event.inputs.environment }} ${{ github.event.inputs.webapp_deploy }}"
 
