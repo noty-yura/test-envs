@@ -1,0 +1,53 @@
+name: flow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: 'Where to release?'
+        required: true
+        default: 'garage'
+        options:
+          - garage
+          - yard
+          - prod
+      migrate:
+        description: 'Run migration before deployment'
+        type: boolean
+        required: false
+        default: false
+      trpc_deploy:
+        description: 'Build and deploy trpc'
+        type: boolean
+        required: false
+        default: false
+      webapp_deploy:
+        description: 'Build and deploy webapp'
+        type: boolean
+        required: false
+        default: false
+
+# todo: add checkboxes for every cron job
+
+jobs:
+  # TODO: add check for release branches only
+  migrate:
+    if: ${{ inputs.migrate == true }}
+    name: Migrate database
+    runs-on: ubuntu-latest
+    run: echo "migrate"
+
+  trpc_deploy:
+    if: ${{ inputs.trpc_deploy == true }}
+    name: Deploy TRPC
+    needs: migrate
+    runs-on: ubuntu-latest
+    run: echo "deploy trpc"
+
+  webapp_deploy:
+    if: ${{ inputs.webapp_deploy == true }}
+    name: Deploy webapp
+    runs-on: ubuntu-latest
+    run: echo "deploy webapp"
+
