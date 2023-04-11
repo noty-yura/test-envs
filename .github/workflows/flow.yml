@@ -1,6 +1,7 @@
 name: flow
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       environment:
@@ -80,19 +81,18 @@ jobs:
       - name: echo
         run: echo "deploy webapp ${{ github.event.inputs.environment }} ${{ github.event.inputs.webapp_deploy }}"
 
-  echoinglist:
+  echoing_list:
     runs-on: ubuntu-latest
     steps:
       - name: Create output variable
         id: get_true_vars
         run: |
-          true_vars=""
-          for var in "${!INPUT_@}"; do
-            if [[ "${!var}" == "true" ]]; then
-              true_vars="v $true_vars $var"
-            fi
+          INPUTS=$(echo "${{ toJson(inputs) }}" | jq -r '. | keys[]')
+          VARIABLE_LIST=()
+          for VARIABLE in $INPUTS; do
+            VARIABLE_LIST += ("$VARIABLE")
           done
-          echo "LIST=$true_vars" >> $GITHUB_OUTPUT
+          echo "LIST=VARIABLE_LIST" >> $GITHUB_OUTPUT
 
       - name: Echo output variable
         run: |
