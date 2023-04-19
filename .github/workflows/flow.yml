@@ -1,5 +1,5 @@
 name: flow
-run-name: Flow of ${{ github.ref }} to ${{  github.event.inputs.environment }}
+run-name: Flow of ${{ github.ref#refs/heads/ }} to ${{  github.event.inputs.environment }}
 
 on:
   push:
