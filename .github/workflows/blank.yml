@@ -40,8 +40,8 @@ jobs:
         run: |
           echo "{{toJson(\"T-751/Handle duplicate workspace account invitations (#564) * chore update minor trpc versions * t-751: test accounts invites for duplicates\")}}"
 
-      - name: deploy
-        run: cat non-existent-file.txt
+#      - name: deploy
+#        run: cat non-existent-file.txt
 
   deploy_stage:
     environment: stage
