@@ -19,6 +19,7 @@ jobs:
           fi
 
   parse_version:
+    needs: check_branch
     runs-on: ubuntu-latest
     name: Parse version
     steps:
