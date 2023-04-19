@@ -35,19 +35,6 @@ on:
 # todo: add checkboxes for every cron job
 
 jobs:
-  # TODO: add check for release branches only
-  check_branch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check branch name
-        run: |
-          branch_name="${{ github.ref_name }}" 
-          if [[ $branch_name != release/R* ]]; then
-              echo "Error: Branch name must start with 'release/R'."
-            exit 1
-          fi
-
-
   echo_all:
     name: echo all
     runs-on: ubuntu-latest

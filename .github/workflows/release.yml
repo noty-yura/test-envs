@@ -6,6 +6,37 @@ on:
       - 'release/R*'
 
 jobs:
+  check_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          branch_name="${{ github.ref_name }}" 
+          if [[ $branch_name != release/R* ]]; then
+              echo "Error: Branch name must start with 'release/R'."
+            exit 1
+          fi
+
+  parse_version:
+    runs-on: ubuntu-latest
+    name: Parse version
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Parse tag
+        run: |
+          VERSION=$(echo "${{ github.ref }}" | sed 's/refs\/heads\/release\///' | sed 's/R//')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+  echo_version:
+    needs: parse_version
+    runs-on: ubuntu-latest
+    name: Echo version
+    steps:
+      - name: Echo
+        run: echo ${{ needs.parse_version.outputs.version }}
+
   create_release:
     name: Create Release
     permissions:
