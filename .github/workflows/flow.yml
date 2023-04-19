@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: Check branch name
         run: |
-          branch_name="${{ github.ref#refs/heads/ }}" 
+          branch_name="${{ github.ref_name }}" 
           if [[ $branch_name != release/R* ]]; then
               echo "Error: Branch name must start with 'release/R'."
             exit 1
